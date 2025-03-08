@@ -11,8 +11,8 @@ const ThinkingState = ({ type }: ThinkingStateProps) => {
     : 'Crafting a personalized email...';
   
   const description = type === 'contacts'
-    ? 'We're analyzing your service and brand to identify ideal contacts.'
-    : 'We're creating a compelling email tailored to your selected contact.';
+    ? 'We\'re analyzing your service and brand to identify ideal contacts.'
+    : 'We\'re creating a compelling email tailored to your selected contact.';
 
   return (
     <div className="w-full max-w-lg mx-auto animate-fade-in">
