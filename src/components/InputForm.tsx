@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { FormData } from '../types';
 import { Card } from '@/components/ui/card';
@@ -12,12 +11,13 @@ interface InputFormProps {
 const InputForm = ({ onSubmit }: InputFormProps) => {
   const [service, setService] = useState('');
   const [brand, setBrand] = useState('');
-  const [isFocused, setIsFocused] = useState<'service' | 'brand' | null>(null);
+  const [quantity, setQuantity] = useState('');
+  const [isFocused, setIsFocused] = useState<'service' | 'brand' | 'quantity' | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (service.trim() && brand.trim()) {
-      onSubmit({ service, brand });
+    if (service.trim() && brand.trim() && quantity.trim()) {
+      onSubmit({ service, brand, quantity });
     }
   };
 
@@ -31,7 +31,7 @@ const InputForm = ({ onSubmit }: InputFormProps) => {
           Generate Targeted Outreach
         </h1>
         <p className="text-muted-foreground animate-slide-down" style={{ animationDelay: '200ms' }}>
-          Enter your service or product and brand to find perfect contacts and craft personalized emails.
+          Enter your service or product, brand, and quantity to find perfect contacts and craft personalized emails.
         </p>
       </div>
 
@@ -74,11 +74,29 @@ const InputForm = ({ onSubmit }: InputFormProps) => {
               required
             />
           </div>
-          
+
+          <div className="space-y-2">
+            <label 
+              htmlFor="quantity" 
+              className={`text-sm font-medium transition-all duration-300 ${isFocused === 'quantity' ? 'text-primary' : 'text-muted-foreground'}`}
+            >
+              Quantity Required
+            </label>
+            <Input
+              id="quantity"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+              onFocus={() => setIsFocused('quantity')}
+              onBlur={() => setIsFocused(null)}
+              placeholder="e.g. 100 units, 5 licenses, 3 months"
+              className="transition-all duration-300 bg-white/60 border-muted focus:ring-2 focus:ring-primary/20 focus:border-primary"
+              required
+            />
+          </div>
+
           <Button 
-            type="submit" 
-            className="w-full py-6 font-medium text-base transition-all duration-300 bg-primary hover:bg-primary/90 active:scale-[0.98]"
-            disabled={!service.trim() || !brand.trim()}
+            type="submit"
+            className="w-full py-6 transition-all duration-300 bg-primary hover:bg-primary/90"
           >
             Find Contacts
           </Button>

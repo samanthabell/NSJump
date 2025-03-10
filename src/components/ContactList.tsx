@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Contact } from '../types';
 import { Card } from '@/components/ui/card';
@@ -19,6 +18,12 @@ const ContactList = ({ contacts, onSelectContact, onBack }: ContactListProps) =>
     onSelectContact(contact);
   };
 
+  const getVerificationColor = (score: number) => {
+    if (score >= 80) return 'text-green-500';
+    if (score >= 60) return 'text-yellow-500';
+    return 'text-red-500';
+  };
+
   return (
     <div className="w-full max-w-lg mx-auto animate-fade-in">
       <Card className="glass overflow-hidden border shadow-lg p-6">
@@ -32,37 +37,55 @@ const ContactList = ({ contacts, onSelectContact, onBack }: ContactListProps) =>
           </p>
         </div>
 
-        <div className="space-y-3 mb-6">
-          {contacts.map((contact, index) => (
-            <div 
+        <div className="space-y-4">
+          {contacts.map((contact) => (
+            <div
               key={contact.id}
-              className={`relative p-4 rounded-lg border transition-all duration-300 group animate-slide-up cursor-pointer ${
-                selectedId === contact.id 
-                  ? 'border-primary bg-primary/5' 
-                  : 'border-muted bg-white/60 hover:border-primary/30 hover:bg-primary/5'
+              className={`p-4 rounded-lg border transition-all duration-300 cursor-pointer ${
+                selectedId === contact.id
+                  ? 'border-primary bg-primary/5'
+                  : 'border-muted hover:border-primary/50'
               }`}
-              style={{ animationDelay: `${index * 100}ms` }}
               onClick={() => handleSelect(contact)}
             >
-              <div className="flex items-center">
-                <div className="flex-1">
-                  <h3 className="font-medium text-foreground">{contact.name}</h3>
-                  <p className="text-sm text-muted-foreground">{contact.title} at {contact.company}</p>
-                  <p className="text-sm text-primary mt-1">{contact.email}</p>
+              <div className="flex items-start justify-between">
+                <div>
+                  <h3 className="font-medium">{contact.name}</h3>
+                  <p className="text-sm text-muted-foreground">{contact.title}</p>
+                  <p className="text-sm text-muted-foreground">{contact.company}</p>
+                  <p className="text-sm text-muted-foreground mt-1">{contact.email}</p>
+                  {contact.verificationScore !== undefined && (
+                    <div className="mt-1 text-sm">
+                      <span className={`font-medium ${getVerificationColor(contact.verificationScore)}`}>
+                        Email Score: {contact.verificationScore}%
+                      </span>
+                      {contact.verificationMessage && (
+                        <span className="text-muted-foreground ml-2">
+                          ({contact.verificationMessage})
+                        </span>
+                      )}
+                    </div>
+                  )}
+                  {contact.suggestedDepartments && (
+                    <div className="mt-2 text-sm">
+                      <p className="font-medium text-primary">Suggested Departments:</p>
+                      <p className="text-muted-foreground">{contact.suggestedDepartments}</p>
+                    </div>
+                  )}
                 </div>
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 ${
-                  selectedId === contact.id 
-                    ? 'bg-primary text-white' 
-                    : 'bg-muted text-muted-foreground'
-                }`}>
-                  <Check size={14} className={selectedId === contact.id ? 'opacity-100' : 'opacity-0'} />
-                </div>
+                <div
+                  className={`w-5 h-5 rounded-full border-2 transition-all duration-300 ${
+                    selectedId === contact.id
+                      ? 'border-primary bg-primary'
+                      : 'border-muted'
+                  }`}
+                />
               </div>
             </div>
           ))}
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex gap-3 mt-6">
           <Button 
             onClick={onBack}
             variant="outline" 

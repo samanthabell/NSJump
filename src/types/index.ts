@@ -1,7 +1,7 @@
-
 export interface FormData {
   service: string;
   brand: string;
+  quantity: string;
 }
 
 export interface Contact {
@@ -11,6 +11,9 @@ export interface Contact {
   company: string;
   email: string;
   selected: boolean;
+  suggestedDepartments?: string;
+  verificationScore?: number;
+  verificationMessage?: string;
 }
 
 export interface GeneratedEmail {
