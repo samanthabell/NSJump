@@ -1,69 +1,69 @@
-# Welcome to your Lovable project
+# NSJump
 
-## Project info
+A modern email outreach tool that helps you find and verify contacts, and send personalized emails at scale.
 
-**URL**: https://lovable.dev/projects/49e439e0-509f-4c6a-a308-9bf6ee19696f
+## Features
 
-## How can I edit this code?
+- Smart contact suggestions based on your service/product
+- Email verification with multiple validation methods
+- Department suggestions using AI
+- Modern, responsive UI
+- Real-time email validation
+- Disposable email detection
+- MX record verification
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+- React + Vite
+- TypeScript
+- Tailwind CSS
+- Shadcn/ui
+- Axios for API calls
+- Email verification services
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/49e439e0-509f-4c6a-a308-9bf6ee19696f) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+1. Clone the repository:
+```bash
+git clone https://github.com/samanthabell/NSJump.git
+cd NSJump
+```
 
-**Use your preferred IDE**
+2. Install dependencies:
+```bash
+npm install
+```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+4. Run email verification tests:
+```bash
+npm run test:email
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Environment Variables
 
-**Use GitHub Codespaces**
+Create a `.env` file in the root directory with the following variables:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```env
+HUNTER_API_KEY=your_hunter_io_api_key # Optional
+```
 
-## What technologies are used for this project?
+## Deployment
 
-This project is built with .
+This project is deployed on Vercel. Each push to the main branch triggers an automatic deployment.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Contributing
 
-## How can I deploy this project?
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-Simply open [Lovable](https://lovable.dev/projects/49e439e0-509f-4c6a-a308-9bf6ee19696f) and click on Share -> Publish.
+## License
 
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+MIT License - see the [LICENSE](LICENSE) file for details
